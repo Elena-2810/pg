@@ -32,7 +32,7 @@ def is_png(file_name):
 
 
 def print_file_type(file_name):
-    
+
     if is_jpeg(file_name):
         return True
     elif is_gif(file_name):
