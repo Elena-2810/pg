@@ -1,6 +1,6 @@
 import sys
 import requests
-import re 
+import re
 
 def download_url_and_get_all_hrefs(url):
    
@@ -10,20 +10,20 @@ def download_url_and_get_all_hrefs(url):
     
     try:
        
-        response = requests.get(url, timeout=10) 
+        response = requests.get(url, timeout=10)
     except requests.exceptions.RequestException as e:
         print(f"Chyba pri stahovani URL: {e}")
-        return hrefs 
+        return hrefs
     
     if response.status_code == 200:
         print("Stazeni probehlo uspesne (Status Code 200).")
         
         
-        regex = r'<a\s+href="([^"]+)"'
+        regex = r'<a\b[^>]*?\bhref=["\']([^"\']+)["\']'
         hrefs = re.findall(regex, response.text)
        
         print(f"Nalezeno {len(hrefs)} odkazu.")
-        for link in hrefs[:5]: 
+        for link in hrefs[:5]:
              print(f"  - {link}")
         
     else:
@@ -32,11 +32,11 @@ def download_url_and_get_all_hrefs(url):
     return hrefs
 
 
-if __name__ == "__main__":
+if 1 == 1: # instead of "main"
     try:
         if len(sys.argv) < 2:
             print("Pouziti: python sixth.py <https://www.jcu.cz>")
-            sys.exit(1) 
+            sys.exit(1)
         url = sys.argv[1]
         
         
